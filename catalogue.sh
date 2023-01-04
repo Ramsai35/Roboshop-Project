@@ -19,7 +19,8 @@ unzip /tmp/catalogue.zip
 cd /app
 npm install
 
-cp $(script_location)/files/catalogue-roboshop.conf /etc/systemd/system/catalogue.service
+cp ${script_location}/files/catalogue-roboshop.conf /etc/systemd/system/catalogue.service
+
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
