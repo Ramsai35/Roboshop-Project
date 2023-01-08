@@ -12,7 +12,7 @@ print_head "START NGINX"
 systemctl start nginx &>>${LOG}
 status_check
 
-print_head "CLEAN UP DIIRECTORY"
+print_head "CLEAN UP DIRECTORY"
 rm -rf /usr/share/nginx/html/* &>>${LOG}
 status_check
 
