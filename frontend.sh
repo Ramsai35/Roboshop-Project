@@ -1,47 +1,37 @@
-script_location=$(pwd)
-LOG=/tmp/roboshop.log
-status_check(){
-  if [ $? -eq 0 ];then
-    echo SUCCESS
-  else
-    echo Failure
-    echo "service got failed for more info refer"- ${LOG}
-    exit
-  fi
-}
+source common.sh
 
-echo -e "\e[35m Install NGINX\e[0m"
+print_head "INSTALL NGINX"
 yum install nginx -y &>>${LOG}
 status_check
 
-echo -e "\e[35m Start NGINX\e[0m"
+print_head "ENABLE NGINX"
 systemctl enable nginx &>>${LOG}
 status_check
 
-echo -e "\e[35m Start NGINX\e[0m"
-systemctl start ginx &>>${LOG}
+print_head "START NGINX"
+systemctl start nginx &>>${LOG}
 status_check
 
-echo -e "\e[35m cleanup content\e[0m"
+print_head "CLEAN UP DIIRECTORY"
 rm -rf /usr/share/nginx/html/* &>>${LOG}
 status_check
 
-echo -e "\e[35m Download web contentX\e[0m"
+print_head "DOWNLOAD WEB CONTENT"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>${LOG}
 status_check
 
-echo -e "\e[35m change dir\e[0m"
+print_head "CHANGE DIRECTION"
 cd /usr/share/nginx/html &>>${LOG}
 status_check
 
-echo -e "\e[35m UNZIP\e[0m"
+print_head "UNZIP"
 unzip /tmp/frontend.zip &>>${LOG}
 status_check
 
-echo -e "\e[35m change Dir\e[0m"
+print_head "REDIRECT TO CONFIG FILE"
 cp ${script_location}/files/nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${LOG}
 status_check
 
-echo -e "\e[35m Restart NGINX\e[0m"
+print_head "RESTART NGINX"
 systemctl restart nginx &>>${LOG}
 status_check
