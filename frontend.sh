@@ -18,7 +18,7 @@ systemctl enable nginx &>>${LOG}
 status_check
 
 echo -e "\e[35m Start NGINX\e[0m"
-systemctl start nginx &>>${LOG}
+systemctl start ginx &>>${LOG}
 status_check
 
 echo -e "\e[35m cleanup content\e[0m"
