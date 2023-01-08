@@ -6,6 +6,7 @@ status_check(){
   else
     echo Failure
     echo "service got failed for more info refer"- ${LOG}
+    exit
   fi
 }
 
