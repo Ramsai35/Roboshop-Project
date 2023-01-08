@@ -27,4 +27,4 @@ systemctl start catalogue
 
 labauto mongodb-client
 
-mongo --host localhost </app/schema/catalogue.js
+mongo --host mongodb.ramdevops35.online </app/schema/catalogue.js
