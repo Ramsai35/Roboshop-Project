@@ -2,9 +2,9 @@ script_location=$(pwd)
 LOG=/tmp/roboshop.log
 status_check(){
   if [ $? -eq 0 ];then
-    echo SUCCESS
+    echo -e "\e[36m Success\e[0m"
   else
-    echo Failure
+    echo -e "\e[36m Failure\e[0m"
     echo "service got failed for more info refer"- ${LOG}
     exit
   fi
