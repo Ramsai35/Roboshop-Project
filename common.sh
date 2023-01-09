@@ -22,6 +22,7 @@ APP_PREREQ() {
     useradd roboshop &>>${LOG}
   fi
   status_check
+  }
 
   mkdir -p /app &>>${LOG}
 
