@@ -84,4 +84,5 @@ if [ schema_load == "true" ];then
   print_head "schema Load"
   mongo --host mongodb.ramdevops35.online </app/schema/${component}.js &>>${LOG}
   status_check
+fi
 }
