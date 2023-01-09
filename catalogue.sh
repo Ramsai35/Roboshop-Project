@@ -8,7 +8,12 @@ print_head "Creating Repo"
 yum install nodejs -y &>>${LOG}
 status_check
 
-APP_PREREQ
+print_head "Add Application User"
+  id roboshop &>>${LOG}
+  if [ $? -ne 0 ]; then
+    useradd roboshop &>>${LOG}
+  fi
+status_check
 
 print_head "Creating Repo"
 mkdir -p /app &>>${LOG}

@@ -14,15 +14,5 @@ print_head(){
   echo -e "\e[1m $1\e[0m"
 }
 
-APP_PREREQ() {
 
-  print_head "Add Application User"
-  id roboshop &>>${LOG}
-  if [ $? -ne 0 ]; then
-    useradd roboshop &>>${LOG}
-  fi
-  status_check
-  }
-
-  mkdir -p /app &>>${LOG}
 
