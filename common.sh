@@ -115,7 +115,7 @@ Maven(){
   yum install maven -y &>>${LOG}
   status_check
 
-  APP_PREREQ
+  APP-PREREQ
 
 print_head "cleanup"
   mvn clean package &>>${LOG}
