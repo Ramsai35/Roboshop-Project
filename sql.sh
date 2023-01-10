@@ -1,5 +1,5 @@
 source common.sh
-if [ -z "${root_set_password}"];then
+if [ -z "${root_set_password}" ];then
   echo "root_set_password is missing"
   exit
 fi
@@ -24,6 +24,6 @@ print_head "Start Mysql"
 systemctl start mysqld &>>${LOG}
  status_check
 
-print_head "Start Mysql"
+print_head "Change password"
 mysql_secure_installation --set-root-pass ${root_set_password} &>>${LOG}
  status_check
