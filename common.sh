@@ -16,9 +16,6 @@ print_head(){
 
 
 Node(){
-   print_head "creating Repo"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
-  status_check
 
   print_head "Install NodeJS"
   yum install nodejs -y &>>${LOG}
@@ -68,21 +65,27 @@ Node(){
   systemctl daemon-reload &>>${LOG}
   status_check
 
-  print_head "enable catalogue"
+  print_head "enable ${component}"
   systemctl enable ${component} &>>${LOG}
   status_check
 
-  print_head "start catalogue"
+  print_head "start ${component}"
   systemctl start ${component} &>>${LOG}
   status_check
 
-  print_head "Install mongodb"
-  labauto mongodb-client &>>${LOG}
-  status_check
+
 
 if [ schema_load == "true" ];then
+  print_head "creating Repo"
+    curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
+    status_check
+
   print_head "schema Load"
   mongo --host mongodb.ramdevops35.online </app/schema/${component}.js &>>${LOG}
   status_check
+
+  print_head "Install mongodb"
+    labauto mongodb-client &>>${LOG}
+    status_check
 fi
 }
