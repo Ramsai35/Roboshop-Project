@@ -62,6 +62,7 @@ APP-PREREQ(){
 
    }
 
+
    LOAD_SCHEMA() {
      if [ ${schema_load} == "true" ]; then
 
