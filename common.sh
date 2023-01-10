@@ -87,8 +87,8 @@ APP-PREREQ(){
           print_head "Install Mysql"
            mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p ${root_mysql_password} < /app/schema/shipping.sql
            status_check
-
-
+          fi
+     fi
    }
 
 
