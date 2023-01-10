@@ -25,7 +25,7 @@ print_head "Start Mysql"
 systemctl start mysqld &>>${LOG}
  status_check
 
- print_head "Start Mysql"
+ print_head "Chaning default password Mysql"
  mysql_secure_installation --set-root-pass $(root_mysql_password) &>>${LOG}
   status_check
 
