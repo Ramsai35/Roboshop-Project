@@ -62,34 +62,37 @@ APP-PREREQ(){
 
    }
 
-   Load_schema(){
-     if [ ${schema_load} == "true" ];then
+   LOAD_SCHEMA() {
+     if [ ${schema_load} == "true" ]; then
 
-       if [ ${schema_type} == "mongo" ];then
+       if [ ${schema_type} == "mongo"  ]; then
+         print_head "Configuring Mongo Repo "
+         cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${LOG}
+         status_check
 
-           print_head "creating Repo"
-             curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
-             status_check
+         print_head "Install Mongo Client"
+         yum install mongodb-org-shell -y &>>${LOG}
+         status_check
 
-           print_head "schema Load"
-           mongo --host mongodb.ramdevops35.online </app/schema/${component}.js &>>${LOG}
-           status_check
+         print_head "Load Schema"
+         mongo --host mongodb-dev.devopsb70.online </app/schema/${component}.js &>>${LOG}
+         status_check
+       fi
 
-           print_head "Install mongodb"
-             labauto mongodb-client &>>${LOG}
-             status_check
-         fi
-         if [ ${schema_type} == "mysql" ];then
-           print_head "Install Mysql"
-            labauto mysql-client
-            status_check
+       if [ ${schema_type} == "mysql"  ]; then
 
-          print_head "Install Mysql"
-           mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p ${root_mysql_password} < /app/schema/shipping.sql
-           status_check
-          fi
+         print_head "Install MySQL Client"
+         yum install mysql -y &>>${LOG}
+         status_check
+
+         print_head "Load Schema"
+         mysql -h mysql-dev.devopsb70.online -uroot -p${root_mysql_password} < /app/schema/shipping.sql  &>>${LOG}
+         status_check
+       fi
+
      fi
    }
+
 
 
 Node(){
@@ -127,7 +130,7 @@ print_head "cleanup"
 
   Systemd
 
-  Load_schema
+  LOAD_SCHEMA
 
 
 }
