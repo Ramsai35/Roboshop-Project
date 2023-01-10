@@ -1,4 +1,4 @@
-souce common.sh
+source common.sh
 if [ -z "${root_set_password}"];then
   echo "root_set_password is missing"
   exit
