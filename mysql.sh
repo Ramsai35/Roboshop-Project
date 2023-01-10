@@ -1,5 +1,5 @@
 source common.sh
-if [ -z "$(root_mysql_password)"];then
+if [ -z "${root_mysql_password}"];then
   echo "variable root_mysql_password is missing"
   exit
 fi
@@ -26,7 +26,7 @@ systemctl start mysqld &>>${LOG}
  status_check
 
  print_head "Chaning default password Mysql"
- mysql_secure_installation --set-root-pass $(root_mysql_password) &>>${LOG}
+ mysql_secure_installation --set-root-pass ${root_mysql_password} &>>${LOG}
   status_check
 
 
