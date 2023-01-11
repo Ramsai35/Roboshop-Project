@@ -136,3 +136,17 @@ print_head "cleanup"
 
 }
 
+Python(){
+print_head "Loading Dependencies"
+   yum install python36 gcc python3-devel -y &>>${LOG}
+  status_check
+
+APP-PREREQ
+
+print_head "Loading Dependencies"
+pip3.6 install -r requirements.txt &>>${LOG}
+status_check
+
+Systemd
+
+}
