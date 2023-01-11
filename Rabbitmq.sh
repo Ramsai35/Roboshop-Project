@@ -28,8 +28,12 @@ systemctl start rabbitmq-server &>>${LOG}
 status_check
 
 print_head "User Add"
-rabbitmqctl add_user roboshop ${roboshop_password} &>>${LOG}
-status_check
+if [ id -nq roboshop ];then
+  rabbitmqctl add_user roboshop ${roboshop_password} &>>${LOG}
+  exit
+fi
+  status_check
+
 
 print_head "Adiministration Permissions"
 rabbitmqctl set_user_tags roboshop administrator &>>${LOG}
