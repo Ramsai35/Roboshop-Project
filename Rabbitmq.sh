@@ -29,7 +29,7 @@ status_check
 
 print_head "User Add"
 rabbitmqctl list_users | grep roboshop &>>${LOG}
-if [ $? -nq 0 ];then
+if [ $? -ne 0 ];then
   rabbitmqctl add_user roboshop ${roboshop_password} &>>${LOG}
 fi
   status_check
