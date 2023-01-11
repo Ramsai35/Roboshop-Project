@@ -28,9 +28,9 @@ systemctl start rabbitmq-server &>>${LOG}
 status_check
 
 print_head "User Add"
-if [ id -nq roboshop ];then
+rabbitmqctl list_user | grep roboshop &>>${LOG}
+if [ $? -nq 0 ];then
   rabbitmqctl add_user roboshop ${roboshop_password} &>>${LOG}
-  exit
 fi
   status_check
 
