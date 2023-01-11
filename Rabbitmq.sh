@@ -32,10 +32,9 @@ rabbitmqctl add_user roboshop ${roboshop_password} &>>${LOG}
 status_check
 
 print_head "Adiministration Permissions"
-rabbitmqctl set_user_tags roboshop administrator
+rabbitmqctl set_user_tags roboshop administrator &>>${LOG}
 status_check
 
 print_head "Permissions"
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${LOG}
 status_check
-}
